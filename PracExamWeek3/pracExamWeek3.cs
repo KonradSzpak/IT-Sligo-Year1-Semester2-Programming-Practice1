@@ -7,13 +7,17 @@ namespace pracExamWeek3
         static void Main(string[] args)
         {
 
+
             int choice = 0;
 
 
             switch (Choice(choice))
             {
-                case 1:  
-                    Console.WriteLine("total: {0}", CalculateQuote(0));
+                case 1:
+                    if (CalculateQuote(0) == 0)
+                        Console.WriteLine("");
+                    else
+                        Console.WriteLine(CalculateQuote(0));
                     break;
                     /*case 2:
                         PrintStatistics();
@@ -55,13 +59,14 @@ namespace pracExamWeek3
             vehicleValue = decimal.Parse(Console.ReadLine());
 
             Console.Write("Enter Gender: ");
-            gender = Console.ReadLine();
+            gender = Console.ReadLine().ToLower();
 
             Console.Write("Enter Age: ");
             age = int.Parse(Console.ReadLine());
 
             Console.Write("Enter Penalty Points: ");
             penaltyPoints= int.Parse(Console.ReadLine());
+            if (penaltyPoints > 12)
 
 
 
@@ -75,10 +80,25 @@ namespace pracExamWeek3
                 total = total + PENALTY3;
             else if (penaltyPoints >= 11 && penaltyPoints < 13)
                 total = total + PENALTY4;
-            else if (penaltyPoints > 12)
-                Console.WriteLine("No Quote Possible");
+            else
+                total = total + 0;
+
+
+
+            if (age >= 18 && age <= 25 && gender == "male")
+                total = total + 30;
+            else if (age < 18)
+            {
+                Console.WriteLine("NoQuotePossible");
+                return 0;
+            }
+            else
+                total = total + 0;
+
 
             return total;
+
+
 
         }
 
